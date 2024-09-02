@@ -30,8 +30,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t app .
-          docker tag app:latest ${{ secrets.AWS_ACCOUNT_NUMBER }}.${{ vars.AWS_REGION }}.${{ github.event.repository.name }}
-
+          docker tag app:latest ${{ secrets.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}
       - name: Push Docker image to ECR
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_NUMBER }}.${{ vars.AWS_REGION }}.${{ github.event.repository.name }}
+          docker push ${{ secrets.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}
