@@ -23,6 +23,6 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 80
 
-USER nobody
+#USER nobody
 
 CMD ["/scripts/run.sh"]
