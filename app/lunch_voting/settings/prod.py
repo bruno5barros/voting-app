@@ -35,7 +35,7 @@ DATABASES = {
 #     "default": dj_database_url.config()
 # }
 
-REDIS_URL = os.environ.get["REDIS_URL"]
+REDIS_URL = os.environ.get("REDIS_URL")
 
 CACHES = {
     "default": {
