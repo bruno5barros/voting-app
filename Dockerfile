@@ -10,10 +10,19 @@ RUN apk add --no-cache curl
 
 COPY ./requirements.txt /app/requirements.txt
 COPY ./app /app
+COPY ./scripts /scripts
 
 WORKDIR /app
 
-RUN chmod -R 777 ./wait-for-it.sh
+RUN chmod -R +x ./wait-for-it.sh
+RUN chmod -R +x /scripts
+RUN chmod -R +x /app
+RUN chmod -R 755 /app/static
 RUN pip install -r requirements.txt
+RUN python manage.py collectstatic --noinput
+
+EXPOSE 80
 
 USER nobody
+
+CMD ["/scripts/run.sh"]
