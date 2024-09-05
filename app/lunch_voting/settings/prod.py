@@ -10,7 +10,13 @@ DEBUG = False
 # DJANGO_SETTINGS_MODULE = lunch_voting.settings.prod
 SECRET_KEY = os.environ["SECRET_KEY"]
 
-ALLOWED_HOSTS: List[str] = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get('ALLOWED_HOSTS', '').split(','),
+    )
+)
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -18,10 +24,10 @@ ALLOWED_HOSTS: List[str] = ["127.0.0.1", "localhost"]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": "db",
-        "NAME": "root",
-        "USER": "root",
-        "PASSWORD": "root",
+        "HOST": os.environ.get("DB_HOST"),
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASS"),
     }
 }
 
