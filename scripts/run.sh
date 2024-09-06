@@ -5,7 +5,7 @@ python manage.py migrate
 
 if [ "$1" = "drf" ]; then
     echo "Starting Django development server..."
-    gunicorn -b :8000 --chdir /app lunch_voting.wsgi:application
+    gunicorn -b :80 --chdir /app lunch_voting.wsgi:application
 elif [ "$1" = "celery-worker" ]; then
     echo "Starting Celery worker..."
     exec celery -A lunch_voting worker -l info
