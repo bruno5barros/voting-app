@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 class Command(BaseCommand):
     help = 'Create a superuser if it does not exist'
 
-    def handle(self, *args, **kwargs):
+    def handle(self, *args: List[Any], **options: Dict[str, Any]) -> None:
         verbosity = options.get("verbosity", 1)
         User = get_user_model()
 
