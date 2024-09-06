@@ -17,13 +17,6 @@ ALLOWED_HOSTS.extend(
         os.environ.get('ALLOWED_HOSTS', '').split(','),
     )
 )
-CSRF_TRUSTED_ORIGINS = []
-CSRF_TRUSTED_ORIGINS.extend(
-    filter(
-        None,
-        os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(','),
-    )
-)
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -59,3 +52,7 @@ CACHES = {
 CELERY_BROKER_URL = REDIS_URL
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_RESULT_BACKEND = REDIS_URL
+
+SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+
