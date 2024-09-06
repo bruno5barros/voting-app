@@ -25,4 +25,4 @@ EXPOSE 80
 
 #USER nobody
 
-ENTRYPOINT ["/scripts/run.sh"]
+#ENTRYPOINT ["/scripts/run.sh"]
