@@ -23,6 +23,6 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-USER nobody
+#USER nobody
 
 ENTRYPOINT ["/scripts/run.sh"]
