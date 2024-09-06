@@ -17,6 +17,13 @@ ALLOWED_HOSTS.extend(
         os.environ.get('ALLOWED_HOSTS', '').split(','),
     )
 )
+CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS.extend(
+    filter(
+        None,
+        os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(','),
+    )
+)
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
