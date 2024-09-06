@@ -2,7 +2,6 @@
 set -e
 
 python manage.py migrate
-gunicorn -b :80 --chdir /app lunch_voting.wsgi:application
 
 if [ "$1" = "drf" ]; then
     echo "Starting Django development server..."
