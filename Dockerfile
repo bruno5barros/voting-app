@@ -23,6 +23,7 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 80
 
-#USER nobody
+RUN chown -R nobody:nogroup /app
+USER nobody
 
 #ENTRYPOINT ["/scripts/run.sh"]
