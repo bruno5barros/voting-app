@@ -1,4 +1,5 @@
 import os
+from typing import List, Dict, Any
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 
@@ -8,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args: List[Any], **options: Dict[str, Any]) -> None:
         verbosity = options.get("verbosity", 1)
-        User = get_user_model()
+        user = get_user_model()
 
         # Fetch email and password from environment variables
         superuser_email = os.environ.get('SUPERUSER_EMAIL')
@@ -21,8 +22,8 @@ class Command(BaseCommand):
             return
 
         # Check if the superuser already exists
-        if not User.objects.filter(email=superuser_email).exists():
-            User.objects.create_superuser(
+        if not user.objects.filter(email=superuser_email).exists():
+            user.objects.create_superuser(
                 username=superuser_username,
                 email=superuser_email,
                 password=superuser_password
