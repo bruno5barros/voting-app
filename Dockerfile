@@ -21,8 +21,8 @@ RUN chmod -R 755 /app/static
 RUN pip install -r requirements.txt
 RUN python manage.py collectstatic --noinput
 
-EXPOSE 80
+EXPOSE 8000
 
-#USER nobody
+USER nobody
 
-CMD ["/scripts/run.sh"]
+ENTRYPOINT ["/scripts/run.sh"]
