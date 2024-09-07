@@ -15,8 +15,8 @@ class Command(BaseCommand):
         email = os.environ.get('SUPERUSER_EMAIL')
         password = os.environ.get('SUPERUSER_PASSWORD')
         username = os.environ.get('SUPERUSER_USERNAME')
-        is_staff = os.environ.get('SUPERUSER_IS_STAFF')
-        is_admin = os.environ.get('SUPERUSER_IS_SUPER_USER')
+        is_staff = bool(os.environ.get('SUPERUSER_IS_STAFF'))
+        is_admin = bool(os.environ.get('SUPERUSER_IS_SUPER_USER'))
 
         # Validate that the environment variables are set
         if not superuser_email or not superuser_password or not superuser_username:
