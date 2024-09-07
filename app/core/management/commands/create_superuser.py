@@ -30,6 +30,7 @@ class Command(BaseCommand):
                 email=email,
                 is_staff=is_staff,
                 is_superuser=is_superuser,
+                is_active=True,
                 password=password
             )
             if verbosity:
