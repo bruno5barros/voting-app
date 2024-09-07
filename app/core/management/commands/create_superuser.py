@@ -16,10 +16,10 @@ class Command(BaseCommand):
         password = os.environ.get('SUPERUSER_PASSWORD')
         username = os.environ.get('SUPERUSER_USERNAME')
         is_staff = bool(os.environ.get('SUPERUSER_IS_STAFF'))
-        is_admin = bool(os.environ.get('SUPERUSER_IS_SUPER_USER'))
+        is_superuser = bool(os.environ.get('SUPERUSER_IS_SUPER_USER'))
 
         # Validate that the environment variables are set
-        if not superuser_email or not superuser_password or not superuser_username:
+        if not email or not password or not username:
             self.stdout.write(self.style.ERROR('Superuser email and password must be provided via environment variables.'))
             return
 
@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 username=username,
                 email=email,
                 is_staff=is_staff,
-                is_admin=is_admin,
+                is_superuser=is_superuser,
                 password=password
             )
             if verbosity:
