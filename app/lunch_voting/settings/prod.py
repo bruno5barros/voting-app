@@ -53,3 +53,5 @@ CELERY_BROKER_URL = REDIS_URL
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_RESULT_BACKEND = REDIS_URL
 
+# Required because of how Lightsail sends the request.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
