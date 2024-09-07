@@ -12,9 +12,11 @@ class Command(BaseCommand):
         user = get_user_model()
 
         # Fetch email and password from environment variables
-        superuser_email = os.environ.get('SUPERUSER_EMAIL')
-        superuser_password = os.environ.get('SUPERUSER_PASSWORD')
-        superuser_username = os.environ.get('SUPERUSER_USERNAME')
+        email = os.environ.get('SUPERUSER_EMAIL')
+        password = os.environ.get('SUPERUSER_PASSWORD')
+        username = os.environ.get('SUPERUSER_USERNAME')
+        is_staff = os.environ.get('SUPERUSER_IS_STAFF')
+        is_admin = os.environ.get('SUPERUSER_IS_SUPER_USER')
 
         # Validate that the environment variables are set
         if not superuser_email or not superuser_password or not superuser_username:
@@ -24,9 +26,11 @@ class Command(BaseCommand):
         # Check if the superuser already exists
         if not user.objects.filter(email=superuser_email).exists():
             user.objects.create_superuser(
-                username=superuser_username,
-                email=superuser_email,
-                password=superuser_password
+                username=username,
+                email=email,
+                is_staff=is_staff,
+                is_admin=is_admin,
+                password=password
             )
             if verbosity:
                 self.stdout.write(self.style.SUCCESS(f'Superuser created successfully.'))
