@@ -24,7 +24,7 @@ class Command(BaseCommand):
             return
 
         # Check if the superuser already exists
-        if not user.objects.filter(email=superuser_email).exists():
+        if not user.objects.filter(email=email).exists():
             user.objects.create_superuser(
                 username=username,
                 email=email,
