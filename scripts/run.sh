@@ -7,5 +7,7 @@ python manage.py setup_voting_locker
 python manage.py create_superuser
 echo "Starting Django development server..."
 gunicorn -b :8000 --chdir /app lunch_voting.wsgi:application &
-celery -A lunch_voting worker -l info &
-celery -A lunch_voting beat --loglevel=info
+echo "Starting celery beat..."
+celery -A lunch_voting beat --loglevel=info &
+echo "Starting celery worker..."
+celery -A lunch_voting worker -l info 
